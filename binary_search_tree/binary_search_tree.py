@@ -27,15 +27,41 @@ class BinarySearchTree:
                 self.right.insert(value)
 
     def contains(self, target):
-        pass
+        test = False
+        if self.value == None:
+            return
+        elif self.value == target:
+            test = True
+        l_test = contains(self.left)
+        r_test = contains(self.right)
+        
+        if test or l_test or r_test:
+            return True
+        else:
+            return False
 
     def get_max(self):
-        pass
+        if self.value == None:
+            return            
+        max_value = self.value
+        l_max = get_max(self.left)
+        r_max = get_max(self.right)
+        if l_max > max_value:
+            max_value = l_max
+        if r_max > max_value:
+            max_value = r_max
+        
+        return max_value
 
     def for_each(self, cb):
-        pass
+        # Preorder traversal
+        if self.value == None:
+            return
+        cb(self.value)
+        for_each(self.left)
+        for_each(self.right)
 
-root = BinarySearchTree(55) # root
-root.insert(90) # root.right
-root.insert(43) # root.left
-root.insert(40) # root.left.left
+# root = BinarySearchTree(55) # root
+# root.insert(90) # root.right
+# root.insert(43) # root.left
+# root.insert(40) # root.left.left
