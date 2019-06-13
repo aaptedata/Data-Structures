@@ -28,12 +28,16 @@ class BinarySearchTree:
 
     def contains(self, target):
         test = False
+        l_test = False
+        r_test = False
         if self.value == None:
             return 
         elif self.value == target:
             test = True
-        l_test = self.left.contains(target)
-        r_test = self.right.contains(target)
+        if self.left:
+            l_test = self.left.contains(target)
+        if self.right:
+            r_test = self.right.contains(target)
         
         if test or l_test or r_test:
             return True
@@ -41,11 +45,15 @@ class BinarySearchTree:
             return False
 
     def get_max(self):
+        l_max = 0
+        r_max = 0
         if self.value == None:
             return            
         max_value = self.value
-        l_max = self.left.get_max()
-        r_max = self.right.get_max()
+        if self.left:
+            l_max = self.left.get_max()
+        if self.right:
+            r_max = self.right.get_max()
         if l_max > max_value:
             max_value = l_max
         if r_max > max_value:
@@ -58,8 +66,10 @@ class BinarySearchTree:
         if self.value == None:
             return
         cb(self.value)
-        self.left.for_each(cb)
-        self.right.for_each(cb)
+        if self.left:
+            self.left.for_each(cb)
+        if self.right:
+            self.right.for_each(cb)
 
 # root = BinarySearchTree(55) # root
 # root.insert(90) # root.right
